@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nosso Amor 💖</title>
+  <style>
+   .music-player {
+      width: 300px;
+      background: #1DB954;
+      color: white;
+      padding: 1rem;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      margin: 2rem auto;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .music-info {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .cover {
+      width: 60px;
+      height: 60px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    .details h4 {
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    .details p {
+      margin: 0;
+      font-size: 0.8rem;
+      color: #e5e5e5;
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    #playPauseBtn {
+      background: white;
+      color: #1DB954;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    #progressBar {
+      flex-grow: 1;
+      appearance: none;
+      height: 6px;
+      background: white;
+      border-radius: 3px;
+      outline: none;
+    }
+    
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom, #ffd1dc, #fff0f5);
+      color: #333;
+      overflow-x: hidden;
+    }
+    header {
+      text-align: center;
+      padding: 2rem;
+      font-size: 2em;
+      color: #d6336c;
+    }
+    .slideshow-container {
+      width: 300px;
+      height: 300px;
+      margin: 0 auto;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    .slideshow-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 15px;
+    }
+    .love-text {
+      max-width: 800px;
+      margin: 2rem auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      font-size: 1.2em;
+      line-height: 1.6em;
+      text-align: center;
+    }
+    .hearts {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: -1;
+    }
+    .hearts span {
+      position: absolute;
+      color: pink;
+      font-size: 2rem;
+      animation: float 6s linear infinite;
+    }
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="hearts">
+    <span style="left:10%">💖</span>
+    <span style="left:25%">💘</span>
+    <span style="left:40%">💕</span>
+    <span style="left:60%">💞</span>
+    <span style="left:75%">💗</span>
+    <span style="left:90%">❤️</span>
+  </div>
+
+  <header>
+    BOTA O QUE VOCE QUISER AQUI TAMBEM 
+  </header>
+
+  <!-- SE EU TIVER QUE EXPLICAR ISSO AQUI  -->
+  <div class="music-player">
+    <div class="music-info">
+      <img src="capa.jpg" alt="Capa" class="cover">
+      <div class="details">
+        <h4>BB (Garupa de Moto Amarela)</h4>
+        <p>Tim Bernardes</p>
+      </div>
+    </div>
+    <div class="controls">
+      <button id="playPauseBtn">▶️</button>
+      <input type="range" id="progressBar" value="0" max="100">
+    </div>
+    <audio id="audioPlayer" src="sua-musica.mp4"></audio>
+  </div>
+
+  
+  <!-- PRA GALERIA RODAR, SEU ANIMAL DO CARALHO-->
+  <div class="slideshow-container">
+    <img id="slide" src="foto1.jpg" alt="Momentos Juntos">
+  </div>
+
+<script>
+  const imagens = ["foto1.jpg", "foto2.jpg", "foto3.jpg", "peixenauro.jpg"];
+  let index = 0;
+  const slide = document.getElementById("slide");
+
+  const slides = document.querySelectorAll('.slideshow-container img');
+    let current = 0;
+
+  setInterval(() => {
+    index = (index + 1) % imagens.length;
+    slide.src = imagens[index];
+  }, 3000);
+
+  const audio = document.getElementById('audioPlayer');
+  const playPauseBtn = document.getElementById('playPauseBtn');
+  const progressBar = document.getElementById('progressBar');
+
+  playPauseBtn.addEventListener('click', () => {
+    if (audio.paused) {
+      audio.play();
+      playPauseBtn.textContent = '⏸️';
+    } else {
+      audio.pause();
+      playPauseBtn.textContent = '▶️';
+    }
+  });
+
+  audio.addEventListener('timeupdate', () => {
+    const progress = (audio.currentTime / audio.duration) * 100;
+    progressBar.value = progress;
+  });
+
+  progressBar.addEventListener('input', () => {
+    const time = (progressBar.value / 100) * audio.duration;
+    audio.currentTime = time;
+  });
+  
+</script>
+
+  <section class="love-text">
+    <p>
+    COLOCA O TEXTO QUE VOCÊ QUER AQUI CARAI
+    </p>
+  </section>
+</body>
+</html>
